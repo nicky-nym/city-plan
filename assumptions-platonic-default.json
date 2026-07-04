@@ -1,0 +1,12 @@
+{
+  "format": "city-assumptions/0.1",
+  "name": "platonic-default",
+  "description": "The Gen 4 spec's fixed model assumptions, verbatim.",
+  "story_height_ft": 12,
+  "cost_model": {
+    "type": "marginal-linear",
+    "base_per_sf": 800,
+    "slope_per_floor_per_sf": 200
+  },
+  "value_per_sf": { "windowed": 3000, "skylit": 2500, "dark": 800 }
+}

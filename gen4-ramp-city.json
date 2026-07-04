@@ -1,0 +1,52 @@
+{
+  "format": "city-plan/0.1",
+  "name": "gen4-ramp-city",
+  "description": "Gen 3 massing with internalized circulation: two-level 15-mph lane arcades every 402 ft (grade-separated by construction), 1:30 helical cloister ramps per courtyard, no stairs or elevators. Circulation charged at 4.8% of gross floorspace (3.3% arcades + 1.5% ramp allowance), full cost, zero value.",
+  "units": "feet",
+  "tile": { "width": 134, "depth": 134 },
+  "solids": [
+    {
+      "id": "waffle-bands",
+      "count_per_tile": 1,
+      "footprint_sf": 10900,
+      "base_floor": 1,
+      "stories": 7,
+      "light_fractions": { "windowed": 1.0 },
+      "circulation_fraction": 0.048
+    },
+    {
+      "id": "court-pavilion",
+      "count_per_tile": 1,
+      "footprint_sf": 3600,
+      "base_floor": 1,
+      "stories": 1,
+      "light_fractions": { "skylit": 1.0 },
+      "circulation_fraction": 0.048
+    },
+    {
+      "id": "penthouse-lattice",
+      "count_per_tile": 1,
+      "footprint_sf": 6292,
+      "base_floor": 8,
+      "stories": 1,
+      "light_fractions": { "windowed": 1.0 },
+      "circulation_fraction": 0.048
+    }
+  ],
+  "circulation_graph": [
+    { "type": "lane", "level": 0, "axis": "NS", "spacing_ft": 402, "speed_mph": 15,
+      "arcade_width_ft": 32, "lanes": 2, "lane_width_ft": 10 },
+    { "type": "lane", "level": 2, "axis": "EW", "spacing_ft": 402, "speed_mph": 15,
+      "arcade_width_ft": 32, "lanes": 2, "lane_width_ft": 10 },
+    { "type": "ramp-lane", "slope": 0.04, "rise_ft_per_300ft": 12, "role": "turning and access" },
+    { "type": "ramp-helix", "per": "courtyard", "slope": 0.033, "rise_per_lap_ft": 12,
+      "width_ft": 8, "modes": ["walk", "cargo-trike"] },
+    { "type": "bridge", "per": "courtyard", "from": "pavilion-roof", "to": "level-2-gallery" }
+  ],
+  "expected_results": {
+    "saleable_far": 4.57, "ground_coverage": 0.81,
+    "gross_value_per_sf_land": 13606, "cost_per_sf_land": 7840,
+    "net_value_per_sf_land": 5766,
+    "note": "spec table values; calculator yields value 13,614 / net 5,774 (0.06% high), consistent with '~4.8%' having been rounded in the original derivation"
+  }
+}

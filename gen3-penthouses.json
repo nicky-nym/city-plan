@@ -1,0 +1,45 @@
+{
+  "format": "city-plan/0.1",
+  "name": "gen3-penthouses",
+  "description": "Gen 2 plus an 8th-floor penthouse lattice, 26 ft wide on band centerlines, 12-ft setbacks under the continued 45-degree planes, flanked by roof terraces.",
+  "units": "feet",
+  "tile": { "width": 134, "depth": 134 },
+  "solids": [
+    {
+      "id": "waffle-bands",
+      "derivation": "134^2 - 84^2",
+      "count_per_tile": 1,
+      "footprint_sf": 10900,
+      "base_floor": 1,
+      "stories": 7,
+      "light_fractions": { "windowed": 1.0 },
+      "circulation_fraction": 0.0
+    },
+    {
+      "id": "court-pavilion",
+      "count_per_tile": 1,
+      "footprint_sf": 3600,
+      "base_floor": 1,
+      "stories": 1,
+      "light_fractions": { "skylit": 1.0 },
+      "circulation_fraction": 0.0
+    },
+    {
+      "id": "penthouse-lattice",
+      "derivation": "26-ft band centered on 50-ft band: 134^2 - 108^2 = 6,292 sf",
+      "count_per_tile": 1,
+      "footprint_sf": 6292,
+      "base_floor": 8,
+      "stories": 1,
+      "light_fractions": { "windowed": 1.0 },
+      "circulation_fraction": 0.0,
+      "roof": "terraces flank; 2nd tier geometrically impossible"
+    }
+  ],
+  "circulation_graph": [],
+  "expected_results": {
+    "saleable_far": 4.80, "ground_coverage": 0.81,
+    "gross_value_per_sf_land": 14300, "cost_per_sf_land": 7840,
+    "net_value_per_sf_land": 6460
+  }
+}

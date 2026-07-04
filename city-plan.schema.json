@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "city-plan/0.1",
+  "title": "city-plan",
+  "type": "object",
+  "required": ["format", "name", "units", "tile", "solids"],
+  "properties": {
+    "format": { "const": "city-plan/0.1" },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "units": { "const": "feet" },
+    "tile": {
+      "type": "object",
+      "oneOf": [
+        { "required": ["width", "depth"] },
+        { "required": ["area_sf"] }
+      ],
+      "properties": {
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "depth": { "type": "number", "exclusiveMinimum": 0 },
+        "area_sf": { "type": "number", "exclusiveMinimum": 0 },
+        "note": { "type": "string" }
+      }
+    },
+    "solids": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/solid" }
+    },
+    "circulation_graph": { "type": "array" },
+    "expected_results": { "type": ["object", "null"] }
+  },
+  "$defs": {
+    "scalarOrDist": {
+      "oneOf": [
+        { "type": "number" },
+        {
+          "type": "object",
+          "required": ["dist"],
+          "properties": {
+            "dist": { "enum": ["uniform-int", "lognormal"] },
+            "min": { "type": "number" },
+            "max": { "type": "number" },
+            "median": { "type": "number" },
+            "sigma": { "type": "number" }
+          }
+        }
+      ]
+    },
+    "solid": {
+      "type": "object",
+      "required": ["id", "base_floor", "stories", "light_fractions"],
+      "oneOf": [
+        { "required": ["footprint_sf"] },
+        { "required": ["total_footprint_sf"] }
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "derivation": { "type": "string" },
+        "count_per_tile": { "$ref": "#/$defs/scalarOrDist" },
+        "footprint_sf": { "$ref": "#/$defs/scalarOrDist" },
+        "total_footprint_sf": { "$ref": "#/$defs/scalarOrDist" },
+        "base_floor": { "type": "integer", "minimum": 1 },
+        "stories": { "$ref": "#/$defs/scalarOrDist" },
+        "light_fractions": {
+          "type": "object",
+          "properties": {
+            "windowed": { "type": "number", "minimum": 0, "maximum": 1 },
+            "skylit": { "type": "number", "minimum": 0, "maximum": 1 },
+            "dark": { "type": "number", "minimum": 0, "maximum": 1 }
+          },
+          "additionalProperties": false
+        },
+        "circulation_fraction": { "type": "number", "minimum": 0, "maximum": 1 },
+        "roof": { "type": "string" },
+        "notes": {}
+      }
+    }
+  }
+}

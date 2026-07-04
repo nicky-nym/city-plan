@@ -1,0 +1,30 @@
+{
+  "format": "city-plan/0.1",
+  "name": "manhattan-generic",
+  "description": "Statistical description of a generic dense Manhattan block. Tile = one 800x264 block plus its share of right-of-way: a 100-ft avenue (60-ft street + two 20-ft sidewalks) on one long side and a 60-ft cross street on one short side, giving a 900x324 tile. 5-10 buildings share ~90% lot coverage; stories roughly lognormal, 4 to 30, median 8. Each building has its own stairs and elevators.",
+  "units": "feet",
+  "tile": { "width": 900, "depth": 324 },
+  "solids": [
+    {
+      "id": "block-buildings",
+      "derivation": "block 800x264 = 211,200 sf; 90% lot coverage = 190,080 sf shared across buildings",
+      "count_per_tile": { "dist": "uniform-int", "min": 5, "max": 10 },
+      "total_footprint_sf": 190080,
+      "base_floor": 1,
+      "stories": { "dist": "lognormal", "median": 8, "sigma": 0.5, "min": 4, "max": 30 },
+      "light_fractions": { "windowed": 0.55, "dark": 0.45 },
+      "circulation_fraction": 0.15,
+      "notes": [
+        "light_fractions DECLARED, not derived: crude stand-in for ~100-ft-deep floorplates lit from two sides at 25-ft useful depth, degraded further because the 45-degree rule fails on lower floors across 60-ft streets facing 8-30 story neighbors. Replace with the daylight tool.",
+        "circulation_fraction 0.15 is a typical core+corridor+stair+elevator factor. NOTE: platonic gens 1-3 declare 0 (never charged in the spec), so this comparison is not apples-to-apples; it overstates the platonic advantage by roughly that margin."
+      ]
+    }
+  ],
+  "circulation_graph": [
+    { "type": "street", "level": 0, "axis": "NS-avenues", "spacing_ft": 900, "row_width_ft": 100, "modes": ["car", "bus", "bike", "walk"] },
+    { "type": "street", "level": 0, "axis": "EW-cross", "spacing_ft": 324, "row_width_ft": 60, "modes": ["car", "bike", "walk"] },
+    { "type": "elevator", "per": "building", "speed_fpm": 500, "avg_wait_s": 45 },
+    { "type": "stair", "per": "building" }
+  ],
+  "expected_results": null
+}

@@ -1,0 +1,25 @@
+{
+  "format": "city-plan/0.1",
+  "name": "gen1-waffle",
+  "description": "Continuous waffle lattice of 50-ft bands, 7 stories, one 84x84 courtyard per 134x134 module. All floorspace windowed at 45-degree sky angle.",
+  "units": "feet",
+  "tile": { "width": 134, "depth": 134 },
+  "solids": [
+    {
+      "id": "waffle-bands",
+      "derivation": "134^2 - 84^2 = 10,900 sf",
+      "count_per_tile": 1,
+      "footprint_sf": 10900,
+      "base_floor": 1,
+      "stories": 7,
+      "light_fractions": { "windowed": 1.0 },
+      "circulation_fraction": 0.0
+    }
+  ],
+  "circulation_graph": [],
+  "expected_results": {
+    "saleable_far": 4.25, "ground_coverage": 0.61,
+    "gross_value_per_sf_land": 12748, "cost_per_sf_land": 6799,
+    "net_value_per_sf_land": 5949
+  }
+}

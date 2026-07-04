@@ -1,0 +1,36 @@
+{
+  "format": "city-plan/0.1",
+  "name": "gen2-pavilions",
+  "description": "Gen 1 plus a one-story fully-skylit 60x60 pavilion centered in each courtyard, top at the 45-degree sight line so it blocks no daylight. Planted roof.",
+  "units": "feet",
+  "tile": { "width": 134, "depth": 134 },
+  "solids": [
+    {
+      "id": "waffle-bands",
+      "derivation": "134^2 - 84^2",
+      "count_per_tile": 1,
+      "footprint_sf": 10900,
+      "base_floor": 1,
+      "stories": 7,
+      "light_fractions": { "windowed": 1.0 },
+      "circulation_fraction": 0.0
+    },
+    {
+      "id": "court-pavilion",
+      "derivation": "60x60, 12-ft moat on all sides",
+      "count_per_tile": 1,
+      "footprint_sf": 3600,
+      "base_floor": 1,
+      "stories": 1,
+      "light_fractions": { "skylit": 1.0 },
+      "circulation_fraction": 0.0,
+      "roof": "garden (sole light source below - unbuildable)"
+    }
+  ],
+  "circulation_graph": [],
+  "expected_results": {
+    "saleable_far": 4.45, "ground_coverage": 0.81,
+    "gross_value_per_sf_land": 13249, "cost_per_sf_land": 6999,
+    "net_value_per_sf_land": 6250
+  }
+}
