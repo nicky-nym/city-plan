@@ -1,6 +1,6 @@
 {
   "format": "city-plan/0.1",
-  "name": "gen1-waffle",
+  "name": "plan-b1-waffle",
   "description": "Continuous waffle lattice of 50-ft bands, 7 stories, one 84x84 courtyard per 134x134 module. All floorspace windowed at 45-degree sky angle.",
   "units": "feet",
   "tile": { "width": 134, "depth": 134 },
