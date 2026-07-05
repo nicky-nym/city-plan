@@ -1,7 +1,7 @@
 {
   "format": "city-plan/0.1",
-  "name": "gen4-ramp-city",
-  "description": "Gen 3 massing with internalized circulation: two-level 15-mph lane arcades every 402 ft (grade-separated by construction), 1:30 helical cloister ramps per courtyard, no stairs or elevators. Circulation charged at 4.8% of gross floorspace (3.3% arcades + 1.5% ramp allowance), full cost, zero value.",
+  "name": "plan-b4-ramp-city",
+  "description": "Plan 3 massing with internalized circulation: two-level 15-mph lane arcades every 402 ft (grade-separated by construction), 1:30 helical cloister ramps per courtyard, no stairs or elevators. Circulation charged at 4.8% of gross floorspace (3.3% arcades + 1.5% ramp allowance), full cost, zero value.",
   "units": "feet",
   "tile": { "width": 134, "depth": 134 },
   "solids": [
