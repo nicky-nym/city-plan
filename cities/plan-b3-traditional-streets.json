@@ -1,7 +1,7 @@
 {
   "format": "city-plan/0.1",
-  "name": "gen3-traditional-streets",
-  "description": "Counterfactual: Gen 3 massing but 30% of land surrendered to roads and parking. Tile is one module of buildable land plus its share of right-of-way.",
+  "name": "plan-b3-traditional-streets",
+  "description": "Counterfactual: Plan 3 massing but 30% of land surrendered to roads and parking. Tile is one module of buildable land plus its share of right-of-way.",
   "units": "feet",
   "tile": { "area_sf": 25651.43, "note": "134x134 / 0.70 buildable fraction" },
   "solids": [
