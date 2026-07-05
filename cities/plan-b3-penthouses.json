@@ -1,7 +1,7 @@
 {
   "format": "city-plan/0.1",
-  "name": "gen3-penthouses",
-  "description": "Gen 2 plus an 8th-floor penthouse lattice, 26 ft wide on band centerlines, 12-ft setbacks under the continued 45-degree planes, flanked by roof terraces.",
+  "name": "plan-b3-penthouses",
+  "description": "Plan-b2 plus an 8th-floor penthouse lattice, 26 ft wide on band centerlines, 12-ft setbacks under the continued 45-degree planes, flanked by roof terraces.",
   "units": "feet",
   "tile": { "width": 134, "depth": 134 },
   "solids": [
