@@ -1,7 +1,7 @@
 {
   "format": "city-plan/0.1",
-  "name": "gen2-pavilions",
-  "description": "Gen 1 plus a one-story fully-skylit 60x60 pavilion centered in each courtyard, top at the 45-degree sight line so it blocks no daylight. Planted roof.",
+  "name": "plan-b2-pavilions",
+  "description": "Plan-b1 plus a one-story fully-skylit 60x60 pavilion centered in each courtyard, top at the 45-degree sight line so it blocks no daylight. Planted roof.",
   "units": "feet",
   "tile": { "width": 134, "depth": 134 },
   "solids": [
