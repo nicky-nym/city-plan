@@ -1,7 +1,7 @@
 # city-plan JSON — format specification v0.1
 
 A machine-readable format for describing the repeating geometry of city plans —
-both exact periodic designs (Platonic City generations) and statistical
+both exact periodic designs (Plan-B City generations) and statistical
 descriptions of real cities (generic Manhattan) — so that a family of analysis
 tools can score them under shared, swappable economic assumptions.
 
@@ -151,7 +151,7 @@ All per sf of tile land, matching the spec's scorecard:
 README_for_file_formats.md   this spec
 city-plan.schema.json        JSON Schema (structural validation)
 assumptions-platonic-default.json
-cities/*.json                gen1..gen4, gen3-traditional-streets, manhattan-generic
+cities/*.json                plan-b1..plan-b4, plan-b3-traditional-streets, manhattan-generic
 tools/far_calculator.py      metric calculator + regression checks
 results/scorecard.md         generated output
 ```
