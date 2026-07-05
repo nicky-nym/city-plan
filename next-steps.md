@@ -1,12 +1,12 @@
-# Claudopolis — Project State & Next Steps
+# city-plan — Project State & Next Steps
 
-*Handoff document. A fresh chat should read this plus `platonic-city-spec-v4.md`
+*Handoff document. A fresh chat should read this plus `plan-b-city-spec.md`
 and be fully oriented. Last updated: 2026-07-03.*
 
 ## Where the project stands
 
-**Phase 1 (design exploration) is summarized in `platonic-city-spec-v4.md`:**
-four generations of platonic-city geometry, scored by net value per sf of land
+**Phase 1 (design exploration) is summarized in `plan-b-city-spec.md`:**
+four generations of plan-b-city geometry, scored by net value per sf of land
 under fixed toy assumptions, culminating in Gen 4 "ramp city"
 (net $5,766/sf land, ~25-min commutes, no stairs/elevators/cars).
 
@@ -20,8 +20,8 @@ under fixed toy assumptions, culminating in Gen 4 "ramp city"
 - **Economic assumptions live separately** in `assumptions/platonic-default.json`
   so any city can be re-scored under any cost/value model without touching
   geometry files.
-- **Six encoded cities** in `cities/`: gen1-waffle, gen2-pavilions,
-  gen3-penthouses, gen3-traditional-streets, gen4-ramp-city (all exact), and
+- **Six encoded cities** in `cities/`: plan-b1-waffle, plan-b2-pavilions,
+  plan-b3-penthouses, plan-b3-traditional-streets, plan-b4-ramp-city (all exact), and
   manhattan-generic (statistical: 900×324 tile, 5–10 buildings, lognormal
   stories 4–30 median 8, 90% lot coverage, 15% core factor).
 - **`tools/far_calculator.py`** — computes saleable FAR, ground coverage,
@@ -80,10 +80,6 @@ of land** — it loses money. Three causes, in order of importance:
 
 ## Workflow notes
 
-- Project files mount read-only at `/mnt/project/` in each chat; copy to the
-  working directory before running or editing, and deliver changed files back
-  via download links for re-upload (or commit to the GitHub repo if this
-  project has moved there — check project instructions for a repo URL).
 - Monte Carlo uses seed 20260703, 20k samples — results are reproducible.
 - Format conventions worth remembering: cost is charged by absolute floor
   NUMBER (a base_floor-8 penthouse pays floor-8 cost); `total_footprint_sf`
