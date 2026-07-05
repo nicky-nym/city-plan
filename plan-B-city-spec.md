@@ -1,4 +1,4 @@
-# Platonic City — Design Specification (Gen 4)
+# Plan-B City — Design Specification (Gen 4)
  
 ## 1. Premise and scope
  
