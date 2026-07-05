@@ -1,7 +1,7 @@
 {
   "format": "city-assumptions/0.1",
   "name": "platonic-default",
-  "description": "The Gen 4 spec's fixed model assumptions, verbatim.",
+  "description": "The spec's fixed model assumptions.",
   "story_height_ft": 12,
   "cost_model": {
     "type": "marginal-linear",
