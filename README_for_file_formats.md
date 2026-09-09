@@ -149,8 +149,8 @@ All per sf of tile land, matching the spec's scorecard:
 
 ```
 README_for_file_formats.md   this spec
-city-plan.schema.json        JSON Schema (structural validation)
-assumptions-platonic-default.json
+schema/city-plan.schema.json JSON Schema (structural validation)
+assumptions/platonic-default.json
 cities/*.json                plan-b1..plan-b4, plan-b3-traditional-streets, manhattan-generic
 tools/far_calculator.py      metric calculator + regression checks
 results/scorecard.md         generated output

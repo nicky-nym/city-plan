@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Claude Code: personal, machine-specific files stay out of the repo
+CLAUDE.local.md
+.claude/settings.local.json
+
+# Editors
+.vscode/
+*.swp

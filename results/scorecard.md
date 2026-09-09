@@ -1,9 +1,9 @@
-| Metric (per sf of land) | gen1-waffle | gen2-pavilions | gen3-penthouses | gen3-traditional-streets | gen4-ramp-city | manhattan-generic |
+| Metric (per sf of land) | manhattan-generic | plan-b1-waffle | plan-b2-pavilions | plan-b3-penthouses | plan-b3-traditional-streets | plan-b4-ramp-city |
 |---|---|---|---|---|---|---|
-| Saleable FAR | 4.25 | 4.45 | 4.80 | 3.36 | 4.57 | 5.25 |
-| Ground coverage | 61% | 81% | 81% | 57% | 81% | 65% |
-| Gross value | $12,748 | $13,249 | $14,300 | $10,010 | $13,614 | $10,545 |
-| Construction cost | $6,799 | $6,999 | $7,840 | $5,488 | $7,840 | $12,636 |
-| Net value (land utility) | $5,949 | $6,250 | $6,460 | $4,522 | $5,774 | $-2,092 |
+| Saleable FAR | 5.25 | 4.25 | 4.45 | 4.80 | 3.36 | 4.57 |
+| Ground coverage | 65% | 61% | 81% | 81% | 57% | 81% |
+| Gross value | $10,545 | $12,748 | $13,249 | $14,300 | $10,010 | $13,614 |
+| Construction cost | $12,636 | $6,799 | $6,999 | $7,840 | $5,488 | $7,840 |
+| Net value (land utility) | $-2,092 | $5,949 | $6,250 | $6,460 | $4,522 | $5,774 |
 
 *Monte Carlo (20,000 samples, seed 20260703): manhattan-generic*

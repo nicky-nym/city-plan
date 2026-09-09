@@ -15,8 +15,8 @@ under fixed toy assumptions, culminating in Gen 4 "ramp city"
 - **`city-plan/0.1` JSON format** — describes any city as a repeating tile of
   "solids" (footprint × stories × daylight mix), works for exact periodic
   designs and statistical real cities alike. Numeric fields accept scalars or
-  distributions (seeded Monte Carlo). Documented in `city-plan-format-spec.md`
-  (the repo README); structural validation in `schema/city-plan.schema.json`.
+  distributions (seeded Monte Carlo). Documented in `README_for_file_formats.md`;
+  structural validation in `schema/city-plan.schema.json`.
 - **Economic assumptions live separately** in `assumptions/platonic-default.json`
   so any city can be re-scored under any cost/value model without touching
   geometry files.
