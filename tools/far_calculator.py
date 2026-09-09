@@ -12,6 +12,10 @@ so results are reproducible run-to-run.
 Usage:
   python3 far_calculator.py cities/*.json -a assumptions/platonic-default.json
   python3 far_calculator.py cities/*.json -a ... --markdown results/scorecard.md
+
+Regression targets in a city file's expected_results apply to one assumptions
+file (its "assumptions" key, platonic-default by default); under any other
+assumptions file the city is scored but not checked.
 """
 
 import argparse
@@ -64,9 +68,19 @@ def solid_is_exact(solid):
 
 def marginal_floor_cost(k, cost_model):
     """$/sf construction cost of floor number k (ground = 1)."""
-    if cost_model["type"] == "marginal-linear":
+    kind = cost_model["type"]
+    if kind == "marginal-linear":
         return cost_model["base_per_sf"] + cost_model["slope_per_floor_per_sf"] * k
-    raise ValueError(f"unknown cost model: {cost_model['type']!r}")
+    if kind == "marginal-bands":
+        # Stepped height-class lookup: each band covers from_floor..to_floor
+        # inclusive; to_floor null means open-ended. Bands must be listed in
+        # ascending order and cover every floor number without gaps.
+        for band in cost_model["bands"]:
+            hi = band.get("to_floor")
+            if band["from_floor"] <= k and (hi is None or k <= hi):
+                return band["per_sf"]
+        raise ValueError(f"marginal-bands: no band covers floor {k}")
+    raise ValueError(f"unknown cost model: {kind!r}")
 
 
 def building_cost(footprint, base_floor, stories, cost_model):
@@ -159,12 +173,19 @@ CHECK_TOLERANCE = {
 }
 
 
-def regression_check(result, expected):
+def regression_check(result, expected, assumptions_name):
     """Compare against a city file's expected_results block. Returns list of
-    (metric, got, want, ok)."""
+    (metric, got, want, ok), or [] when the block targets a different
+    assumptions file (its optional "assumptions" key; platonic-default when
+    absent, since that was the only baseline when the targets were derived).
+    """
     rows = []
+    if expected is None:
+        return rows
+    if expected.get("assumptions", "platonic-default") != assumptions_name:
+        return rows
     for metric, tol in CHECK_TOLERANCE.items():
-        if expected is None or metric not in expected:
+        if metric not in expected:
             continue
         got, want = result[metric], expected[metric]
         rows.append((metric, got, want, abs(got - want) <= tol))
@@ -212,8 +233,8 @@ def main(argv=None):
         res = score_city(city, assumptions)
         results.append(res)
 
-        checks = regression_check(res, city.get("expected_results"))
-        status = ""
+        checks = regression_check(res, city.get("expected_results"), assumptions["name"])
+        status = "" if city.get("expected_results") is None else f"(no targets for {assumptions['name']})"
         if checks:
             bad = [c for c in checks if not c[3]]
             failures += len(bad)

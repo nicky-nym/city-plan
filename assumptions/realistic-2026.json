@@ -1,0 +1,21 @@
+{
+  "format": "city-assumptions/0.1",
+  "name": "realistic-2026",
+  "description": "High-cost US metro (Manhattan-class), 2026 dollars. All-in development cost (hard + soft, excluding land) stepped by height class; capitalized floorspace values by daylight grade at blended condo/office levels rather than the spec's luxury-tower ceiling. Numbers are order-of-magnitude estimates assembled from published 2025-26 cost guides and Manhattan market reports, NOT licensed RSMeans data; replace band-by-band as better sources arrive.",
+  "story_height_ft": 12,
+  "cost_model": {
+    "type": "marginal-bands",
+    "note": "Marginal $/sf of floor number k (ground = 1), constant within each band. Charged by absolute floor number like marginal-linear, so stacked solids price as one building. Implied whole-building average: 3 stories $500, 7 stories $557, 12 stories $638, 20 stories $743, 30 stories $862, 40 stories $984 -- matching low-rise / mid-rise / high-rise / tower brackets in 2025-26 guides once a ~30% soft-cost load and a high-cost-metro multiplier are applied.",
+    "bands": [
+      { "from_floor": 1,  "to_floor": 3,    "per_sf": 500,  "class": "low-rise: wood or light steel over slab" },
+      { "from_floor": 4,  "to_floor": 7,    "per_sf": 600,  "class": "mid-rise: podium + framed, sprinklers, one elevator bank" },
+      { "from_floor": 8,  "to_floor": 12,   "per_sf": 750,  "class": "high-rise threshold: concrete or steel frame, pressurized stairs, cranes" },
+      { "from_floor": 13, "to_floor": 20,   "per_sf": 900,  "class": "high-rise: deeper foundations, wind bracing, second elevator bank" },
+      { "from_floor": 21, "to_floor": 30,   "per_sf": 1100, "class": "tall: transfer structure, curtain wall, pumping zones" },
+      { "from_floor": 31, "to_floor": 40,   "per_sf": 1350, "class": "tower: outrigger or core-wall systems, sky lobbies" },
+      { "from_floor": 41, "to_floor": null, "per_sf": 1650, "class": "supertall: damping, express elevators, long schedule" }
+    ]
+  },
+  "value_per_sf": { "windowed": 1800, "skylit": 1500, "dark": 900 },
+  "value_note": "windowed = blended Manhattan condo/office capitalized value (2026 condo average ~$2,000-2,400/sf, median ~$1,600/sf, luxury new-development benchmark ~$3,000/sf, which the spec used); skylit = windowed less a ~1/6 no-view discount; dark = ~50% of windowed, reflecting that interior floorplate area is sold or leased as part of units and carries kitchens, baths, storage, and conference rooms rather than being unsaleable."
+}
