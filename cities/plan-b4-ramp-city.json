@@ -44,6 +44,7 @@
     { "type": "bridge", "per": "courtyard", "from": "pavilion-roof", "to": "level-2-gallery" }
   ],
   "expected_results": {
+    "assumptions": "platonic-default",
     "saleable_far": 4.57, "ground_coverage": 0.81,
     "gross_value_per_sf_land": 13606, "cost_per_sf_land": 7840,
     "net_value_per_sf_land": 5766,

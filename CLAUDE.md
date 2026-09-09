@@ -22,7 +22,7 @@ cities/*.json                 one file per city (exact or statistical)
 assumptions/*.json            cost and value models, separate from geometry
 schema/city-plan.schema.json  JSON Schema for city files
 tools/far_calculator.py       the only tool so far; stdlib only, no deps
-results/scorecard.md          generated; regenerate, never hand-edit
+results/scorecard*.md         generated, one per assumptions file; regenerate, never hand-edit
 ```
 
 ## Commands
@@ -34,15 +34,18 @@ python3 tools/far_calculator.py cities/*.json -a assumptions/platonic-default.js
 ```
 
 Add `--markdown results/scorecard.md` to regenerate the scorecard. The
-`/score` skill does both. There is no separate test suite; the
-`expected_results` block in each city file is the regression baseline.
+`/score` skill does both, and also scores under `assumptions/realistic-2026.json`
+into `results/scorecard-realistic-2026.md`. There is no separate test suite;
+the `expected_results` block in each city file is the regression baseline.
 
 ## Rules
 
 - Every city file must carry an `expected_results` block. When adding a
   city, derive the targets by hand from the spec or a cited source, then
   confirm the calculator matches; never paste the calculator's own output in
-  as the target.
+  as the target. The block's `assumptions` key names the assumptions file
+  the targets belong to (platonic-default if absent); under any other
+  assumptions file the city is scored but not checked.
 - Never loosen `CHECK_TOLERANCE` or edit an `expected_results` target to make
   a check pass without saying so explicitly and explaining why.
 - plan-b4-ramp-city deliberately computes 0.06% above the spec table

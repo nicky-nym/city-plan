@@ -37,6 +37,7 @@
     { "type": "street", "level": 0, "right_of_way_fraction": 0.30, "note": "cars, buses, parking" }
   ],
   "expected_results": {
+    "assumptions": "platonic-default",
     "saleable_far": 3.36, "ground_coverage": 0.57,
     "gross_value_per_sf_land": 10010, "cost_per_sf_land": 5488,
     "net_value_per_sf_land": 4522

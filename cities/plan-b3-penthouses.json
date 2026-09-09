@@ -38,6 +38,7 @@
   ],
   "circulation_graph": [],
   "expected_results": {
+    "assumptions": "platonic-default",
     "saleable_far": 4.80, "ground_coverage": 0.81,
     "gross_value_per_sf_land": 14300, "cost_per_sf_land": 7840,
     "net_value_per_sf_land": 6460

@@ -111,8 +111,36 @@ future travel-time tool has a target schema to firm up.
 The `marginal-linear` model reproduces the spec's schedule exactly: floor 1
 costs $1,000/sf, floor 7 $2,200/sf, floor 8 $2,400/sf; a 7-story building
 averages $1,600/sf ("$1,000 at 1 story, +$100/sf per additional story").
-Swapping in RSMeans-class real data later means adding a new `cost_model.type`
-(e.g. a per-height-class lookup table) — city files don't change.
+
+A second type, `marginal-bands`, is a stepped height-class lookup
+(`assumptions/realistic-2026.json`):
+
+```jsonc
+"cost_model": {
+  "type": "marginal-bands",
+  "bands": [                       // marginal $/sf of floor k, by band
+    { "from_floor": 1,  "to_floor": 3,    "per_sf": 500 },
+    { "from_floor": 4,  "to_floor": 7,    "per_sf": 600 },
+    // ...
+    { "from_floor": 41, "to_floor": null, "per_sf": 1650 }   // null = open-ended
+  ]
+}
+```
+
+Bands are listed in ascending order and must cover every floor number with no
+gaps (the calculator raises an error for an uncovered floor). Like
+`marginal-linear`, cost is charged by absolute floor number. Adding another
+model means adding a new `cost_model.type` to `marginal_floor_cost()` — city
+files don't change.
+
+### Regression targets and assumptions files
+
+A city file's `expected_results` block applies to exactly one assumptions
+file, named by its `assumptions` key (`"platonic-default"` when absent, since
+that was the only baseline when the targets were derived). Scored under any
+other assumptions file, the city prints `(no targets for <name>)` and is not
+checked. Targets must be derived by hand from the spec or a cited source,
+never pasted from calculator output.
 
 A useful consequence to keep in mind: under this schedule a **windowed** floor
 stops paying for itself above floor 11 (800 + 200k > 3,000), skylit above
@@ -150,10 +178,12 @@ All per sf of tile land, matching the spec's scorecard:
 ```
 README_for_file_formats.md   this spec
 schema/city-plan.schema.json JSON Schema (structural validation)
-assumptions/platonic-default.json
+assumptions/platonic-default.json   the spec's toy model (regression baseline)
+assumptions/realistic-2026.json     stepped height-class costs, blended market values
 cities/*.json                plan-b1..plan-b4, plan-b3-traditional-streets, manhattan-generic
 tools/far_calculator.py      metric calculator + regression checks
-results/scorecard.md         generated output
+results/scorecard.md         generated output (platonic-default)
+results/scorecard-realistic-2026.md  generated output (realistic-2026)
 ```
 
 Run: `python3 tools/far_calculator.py cities/*.json -a assumptions/platonic-default.json`
