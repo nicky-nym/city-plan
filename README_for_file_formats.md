@@ -59,12 +59,30 @@ floor for some number of stories, with a declared daylight mix.
   "base_floor": 1,                           // 1 = ground; 8 = sits atop 7 stories
   "stories": 7,                              // scalar or distribution
   "light_fractions": { "windowed": 1.0 },    // windowed / skylit / dark, sums to 1
-  "circulation_fraction": 0.0,               // share of floorspace built at full
-                                             // cost but zero value (arcades, ramps,
-                                             // cores, corridors)
+  "circulation_fraction": 0.0,               // transport circulation built as
+                                             // floorspace (street-replacing arcades,
+                                             // ramp lanes); always charged: full
+                                             // cost, zero value
+  "internal_circulation_fraction": 0.1442,   // ordinary building-internal circulation
+                                             // (corridors, cores, stairs, elevators,
+                                             // ramp galleries); charged only when the
+                                             // assumptions file says so (see below)
+  "internal_circulation_derivation": "6-ft corridor ... = 1,572 sf of 10,900",
   "roof": "terrace"                          // optional annotation
 }
 ```
+
+**Two kinds of circulation.** The spec charges gen 4's arcades and ramp lanes
+(4.8%) because they replace the land a conventional city gives to streets, but
+it never charged the corridors, cores, or cloister galleries inside ordinary
+floorplates (Section 5). The format keeps those apart so both conventions can
+be scored: `circulation_fraction` is the design-level transport share and is
+always charged; `internal_circulation_fraction` is the ordinary internal share
+and is charged only when the assumptions file's `internal_circulation` model
+is `declared`. Both are fractions of the solid's gross floorspace and they add
+(a sum above 1 is an error). Every solid should declare an internal fraction
+with a geometric `internal_circulation_derivation`; a statistical city like
+Manhattan declares a typical core factor instead.
 
 **Important convention — `base_floor` and cost:** construction cost is charged
 per floor *number*, not per floor counted from the solid's own base. A
@@ -104,9 +122,19 @@ future travel-time tool has a target schema to firm up.
     "base_per_sf": 800,
     "slope_per_floor_per_sf": 200
   },
-  "value_per_sf": { "windowed": 3000, "skylit": 2500, "dark": 800 }
+  "value_per_sf": { "windowed": 3000, "skylit": 2500, "dark": 800 },
+  "internal_circulation": { "type": "none" }   // or "declared"; declared if absent
 }
 ```
+
+`internal_circulation.type` decides whether each solid's
+`internal_circulation_fraction` is charged: `none` ignores it (the spec's
+convention, used by platonic-default so it reproduces the Section 4
+scorecard); `declared` charges it (realistic-2026, and the default when the
+key is absent). Either way every city is treated alike, so comparisons under
+one assumptions file are apples-to-apples. A height-dependent core model
+would be a third type here, added to `internal_circulation()` in the
+calculator.
 
 The `marginal-linear` model reproduces the spec's schedule exactly: floor 1
 costs $1,000/sf, floor 7 $2,200/sf, floor 8 $2,400/sf; a 7-story building
@@ -151,7 +179,7 @@ platonic-default assumptions — the model, not the format, is doing that.
 
 All per sf of tile land, matching the spec's scorecard:
 
-- **Saleable FAR** — floorspace net of circulation fraction ÷ land
+- **Saleable FAR** — floorspace net of charged circulation fractions ÷ land
 - **Ground coverage** — footprints of solids with `base_floor: 1` ÷ land
 - **Gross value** — Σ saleable floorspace × light-grade value ÷ land
 - **Construction cost** — Σ footprint × Σ marginal floor costs ÷ land
@@ -164,11 +192,15 @@ All per sf of tile land, matching the spec's scorecard:
   that computes them from explicit geometry and the 45° rule (needs footprint
   polygons, not just areas — the planned v0.2 "compiler" step that expands
   semantic primitives into 2.5D polygon solids).
-- `circulation_fraction` is declared. Platonic gens 1–3 declare 0 (internal
-  corridors were never charged in any generation — comparisons are internally
-  fair but absolute FARs slightly optimistic, per the spec). Statistical
-  cities should declare realistic core/corridor factors (~15%), which makes
-  cross-family comparisons **not** apples-to-apples. Flagged in file notes.
+- Circulation fractions are declared, not derived from geometry. Every file
+  now carries an `internal_circulation_fraction` with a hand derivation
+  (corridors in the 50-ft bands, gen 4's cloister galleries, Manhattan's
+  typical core factor); a compiler that expands solids into polygons could
+  compute the plan-b ones. Whether the internal share is charged is an
+  assumptions-file choice, so cross-family comparisons are fair under either
+  file, but the plan-b gens 1–3 charge corridors only: they never specified
+  vertical circulation, so gen 4 is the only complete design to set against
+  Manhattan.
 - `circulation_graph` is inert. Next tool after daylight: travel-time
   estimator (graph search over lanes/ramps/elevators + tile geometry).
 - No solar orientation, wind, fire egress, drainage — same gaps as the spec.

@@ -17,5 +17,9 @@
     ]
   },
   "value_per_sf": { "windowed": 1800, "skylit": 1500, "dark": 900 },
+  "internal_circulation": {
+    "type": "declared",
+    "note": "Charge each solid's declared internal_circulation_fraction (corridors, cores, stairs, elevators, ramp galleries) at full cost and zero value, on top of its circulation_fraction. This is what makes the platonic-vs-Manhattan comparison apples-to-apples under this file."
+  },
   "value_note": "windowed = blended Manhattan condo/office capitalized value (2026 condo average ~$2,000-2,400/sf, median ~$1,600/sf, luxury new-development benchmark ~$3,000/sf, which the spec used); skylit = windowed less a ~1/6 no-view discount; dark = ~50% of windowed, reflecting that interior floorplate area is sold or leased as part of units and carries kitchens, baths, storage, and conference rooms rather than being unsaleable."
 }

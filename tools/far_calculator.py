@@ -13,6 +13,19 @@ Usage:
   python3 far_calculator.py cities/*.json -a assumptions/platonic-default.json
   python3 far_calculator.py cities/*.json -a ... --markdown results/scorecard.md
 
+Circulation is charged as two per-solid fractions of gross floorspace, both
+built at full cost and sold for nothing:
+  circulation_fraction           transport circulation built as floorspace
+                                 (street-replacing arcades, ramp lanes); always
+                                 charged.
+  internal_circulation_fraction  ordinary building-internal circulation
+                                 (corridors, cores, stairs, elevators, ramp
+                                 galleries); charged only when the assumptions
+                                 file's internal_circulation model says so
+                                 (type "declared", the default) and not under
+                                 type "none" (platonic-default, which keeps the
+                                 spec's never-charged-corridors convention).
+
 Regression targets in a city file's expected_results apply to one assumptions
 file (its "assumptions" key, platonic-default by default); under any other
 assumptions file the city is scored but not checked.
@@ -95,12 +108,36 @@ def building_cost(footprint, base_floor, stories, cost_model):
     )
 
 
+def internal_circulation(solid, assumptions):
+    """Fraction of a solid's floorspace charged as ordinary building-internal
+    circulation, per the assumptions file's internal_circulation model:
+      none      -- charge nothing (the spec's convention; platonic-default)
+      declared  -- charge the solid's internal_circulation_fraction (default
+                   when the assumptions file has no internal_circulation key)
+    """
+    model = assumptions.get("internal_circulation", {"type": "declared"})
+    kind = model["type"]
+    if kind == "none":
+        return 0.0
+    if kind == "declared":
+        return solid.get("internal_circulation_fraction", 0.0)
+    raise ValueError(f"unknown internal_circulation model: {kind!r}")
+
+
+def circulation_fraction(solid, assumptions):
+    """Total share of a solid's floorspace built at full cost for zero value."""
+    circ = solid.get("circulation_fraction", 0.0) + internal_circulation(solid, assumptions)
+    if circ > 1.0:
+        raise ValueError(f"solid {solid.get('id')!r}: circulation fractions sum to {circ} > 1")
+    return circ
+
+
 def measure_building(footprint, base_floor, stories, solid, assumptions):
     """Return (floorspace, saleable, value, cost, ground_footprint) for one
     building instance with concrete numbers."""
     stories = max(1, int(round(stories)))
     lf = solid.get("light_fractions", {})
-    circ = solid.get("circulation_fraction", 0.0)
+    circ = circulation_fraction(solid, assumptions)
     values = assumptions["value_per_sf"]
 
     floorspace = footprint * stories

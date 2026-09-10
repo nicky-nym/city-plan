@@ -72,6 +72,7 @@
           "additionalProperties": false
         },
         "circulation_fraction": { "type": "number", "minimum": 0, "maximum": 1 },
+        "internal_circulation_fraction": { "type": "number", "minimum": 0, "maximum": 1 },
         "roof": { "type": "string" },
         "notes": {}
       }

@@ -52,6 +52,15 @@ the `expected_results` block in each city file is the regression baseline.
   (rounded "~4.8%" circulation). Leave it; do not "fix" either side.
 - Cost is charged by absolute floor number, not by floors counted from a
   solid's base. This is what makes stacked solids price like one building.
+- Circulation is two per-solid fields. `circulation_fraction` (transport
+  circulation built as floorspace: gen 4 arcades and ramp lanes) is always
+  charged. `internal_circulation_fraction` (corridors, cores, galleries) is
+  charged only when the assumptions file's `internal_circulation.type` is
+  `declared`; platonic-default sets `none` because the spec never charged
+  it, and that is what keeps the Section 4 table reproducible. Every solid
+  declares an internal fraction with a geometric
+  `internal_circulation_derivation`; do not fold internal circulation into
+  `circulation_fraction` or the spec check breaks.
 - Monte Carlo uses the fixed seed and sample count in the calculator. Do not
   change them casually; results in docs depend on them.
 - New cost or value models go in a new file under `assumptions/`, with a new

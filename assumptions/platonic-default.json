@@ -8,5 +8,9 @@
     "base_per_sf": 800,
     "slope_per_floor_per_sf": 200
   },
-  "value_per_sf": { "windowed": 3000, "skylit": 2500, "dark": 800 }
+  "value_per_sf": { "windowed": 3000, "skylit": 2500, "dark": 800 },
+  "internal_circulation": {
+    "type": "none",
+    "note": "The spec never charged corridor/core/gallery area inside ordinary floorplates in any generation (Section 5), so this file ignores every solid's internal_circulation_fraction and reproduces the Section 4 scorecard. Design-level circulation_fraction (gen 4 arcades and ramp lanes) is still charged."
+  }
 }

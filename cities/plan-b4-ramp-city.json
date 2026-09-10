@@ -1,7 +1,7 @@
 {
   "format": "city-plan/0.1",
   "name": "plan-b4-ramp-city",
-  "description": "Plan 3 massing with internalized circulation: two-level 15-mph lane arcades every 402 ft (grade-separated by construction), 1:30 helical cloister ramps per courtyard, no stairs or elevators. Circulation charged at 4.8% of gross floorspace (3.3% arcades + 1.5% ramp allowance), full cost, zero value.",
+  "description": "Plan 3 massing with internalized circulation: two-level 15-mph lane arcades every 402 ft (grade-separated by construction), 1:30 helical cloister ramps per courtyard, no stairs or elevators. Transport circulation (circulation_fraction) charged at 4.8% of gross floorspace (3.3% arcades + 1.5% ramp-lane allowance) as in the spec; the cloister galleries are charged separately as internal circulation, which the spec never counted.",
   "units": "feet",
   "tile": { "width": 134, "depth": 134 },
   "solids": [
@@ -12,7 +12,9 @@
       "base_floor": 1,
       "stories": 7,
       "light_fractions": { "windowed": 1.0 },
-      "circulation_fraction": 0.048
+      "circulation_fraction": 0.048,
+      "internal_circulation_fraction": 0.2701,
+      "internal_circulation_derivation": "the 8-ft helical cloister gallery rings every 84x84 court on every floor and replaces the corridor: ring area 100^2 - 84^2 = 2,944 sf per module-floor, of 10,900 = 27.0%. The gallery lies inside the 50-ft band (projecting into the court would break the 45-degree rule and the 12-ft moat; the spec's ~360-ft lap matches a ring centred 4 ft inside the band face). Rooms between the two galleries are 34 ft deep and open onto either one, so no additional corridor. Charged at full cost though an open cloister is cheaper than enclosed space; the model has no cheaper grade."
     },
     {
       "id": "court-pavilion",
@@ -21,7 +23,9 @@
       "base_floor": 1,
       "stories": 1,
       "light_fractions": { "skylit": 1.0 },
-      "circulation_fraction": 0.048
+      "circulation_fraction": 0.048,
+      "internal_circulation_fraction": 0.10,
+      "internal_circulation_derivation": "as plan-b2: one 6-ft corridor across the 60-ft pavilion, 360 sf of 3,600"
     },
     {
       "id": "penthouse-lattice",
@@ -30,7 +34,9 @@
       "base_floor": 8,
       "stories": 1,
       "light_fractions": { "windowed": 1.0 },
-      "circulation_fraction": 0.048
+      "circulation_fraction": 0.048,
+      "internal_circulation_fraction": 0.0,
+      "internal_circulation_derivation": "terrace-accessed as in plan-b3; the helix emerges onto the 12-ft roof terraces at floor 8, outside the penthouse footprint, so its top lap is uncharged roof paving"
     }
   ],
   "circulation_graph": [

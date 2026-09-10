@@ -13,7 +13,9 @@
       "base_floor": 1,
       "stories": 7,
       "light_fractions": { "windowed": 1.0 },
-      "circulation_fraction": 0.0
+      "circulation_fraction": 0.0,
+      "internal_circulation_fraction": 0.1442,
+      "internal_circulation_derivation": "double-loaded 6-ft corridor along both band centerlines, crossing once at the intersection: 6 x 134 x 2 - 36 = 1,572 sf of 10,900 = 14.4%. Vertical circulation is not charged: gens 1-3 are massing studies that never specified how floors are reached (the no-stairs premise rules out stair cores; the ramp galleries arrive in gen 4)."
     }
   ],
   "circulation_graph": [],

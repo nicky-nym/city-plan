@@ -13,7 +13,9 @@
       "base_floor": 1,
       "stories": 7,
       "light_fractions": { "windowed": 1.0 },
-      "circulation_fraction": 0.0
+      "circulation_fraction": 0.0,
+      "internal_circulation_fraction": 0.1442,
+      "internal_circulation_derivation": "double-loaded 6-ft corridor along both band centerlines, crossing once at the intersection: 6 x 134 x 2 - 36 = 1,572 sf of 10,900 = 14.4%. Vertical circulation is not charged: gens 1-3 are massing studies that never specified how floors are reached (the no-stairs premise rules out stair cores; the ramp galleries arrive in gen 4)."
     },
     {
       "id": "court-pavilion",
@@ -22,7 +24,9 @@
       "base_floor": 1,
       "stories": 1,
       "light_fractions": { "skylit": 1.0 },
-      "circulation_fraction": 0.0
+      "circulation_fraction": 0.0,
+      "internal_circulation_fraction": 0.10,
+      "internal_circulation_derivation": "one 6-ft corridor across the 60-ft pavilion: 360 sf of 3,600 = 10%; entered at grade from the moat"
     },
     {
       "id": "penthouse-lattice",
@@ -33,6 +37,8 @@
       "stories": 1,
       "light_fractions": { "windowed": 1.0 },
       "circulation_fraction": 0.0,
+      "internal_circulation_fraction": 0.0,
+      "internal_circulation_derivation": "26-ft band flanked by 12-ft roof terraces on both sides; rooms open directly onto the terraces, which serve as the access walkway, so no corridor inside the floorplate",
       "roof": "terraces flank; 2nd tier geometrically impossible"
     }
   ],
