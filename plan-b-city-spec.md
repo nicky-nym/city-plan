@@ -1,4 +1,12 @@
 # Plan-B City — Design Specification (Gen 4)
+
+*Status (2026-09-09): this is the Phase 1 design record. It is kept as
+written because its Section 4 scorecard is the regression baseline that
+`tools/far_calculator.py` must reproduce under `assumptions/platonic-default.json`.
+The JSON files in `cities/` are the machine-readable form of Sections 3 and
+4; the roadmap in Section 6 is superseded by `next-steps.md`. One open
+question in this text, the placement and extent of the gen 4 cloister
+galleries, is analysed under "Open decision" in `next-steps.md`.*
  
 ## 1. Premise and scope
  
@@ -57,4 +65,4 @@ The three-tier value model ($3,000 / $2,500 / $800) is coarse; real daylight val
  
 ## 6. Roadmap
  
-Candidate next steps: replace the cost model with real construction cost data (e.g., RSMeans-class $/sf by height class); replace the value model with real rent/price gradients by daylight, floor, and use; traffic microsimulation of the two-level lane grid (capacity, intersections, worst-case trips); carbon footprint of construction and operation vs conventional cities; water, sewage, and stormwater sizing for 10M people under 81% coverage; parks and greenspace accounting (courts, moats, pavilion roofs, terraces) vs benchmarks; 3D visualization of the supermodule; and quantitative comparisons against New York, San Francisco, Paris, and Hong Kong on FAR, coverage, commute, and floorspace per capita.
+*Superseded by `next-steps.md`; kept as the original list.* Candidate next steps: replace the cost model with real construction cost data (e.g., RSMeans-class $/sf by height class); replace the value model with real rent/price gradients by daylight, floor, and use; traffic microsimulation of the two-level lane grid (capacity, intersections, worst-case trips); carbon footprint of construction and operation vs conventional cities; water, sewage, and stormwater sizing for 10M people under 81% coverage; parks and greenspace accounting (courts, moats, pavilion roofs, terraces) vs benchmarks; 3D visualization of the supermodule; and quantitative comparisons against New York, San Francisco, Paris, and Hong Kong on FAR, coverage, commute, and floorspace per capita.
